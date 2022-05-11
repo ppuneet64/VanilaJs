@@ -156,3 +156,29 @@ const debounce = (func, delay = 1000) => {
         }, delay);
     }
 }
+
+/**
+ * Get Throwttled Function
+ * @param {function} func Actual function that will be executed in given interval
+ * @param {number} delay Delay in Execution(ms)
+ * @example
+ * function searchData(e) {
+        console.log(e.target.value)
+    }
+    const searchInputFunc = throwttle(searchData, 1500)
+    const searchInput = document.getElementById('search')
+    searchInput.addEventListener("keyup", searchInputFunc)
+ * @returns Function with Delay
+ */
+export const throwttle = (func, delay = 1000) => {
+    let isFinished = false
+    return function (...args) {
+        if (!isFinished) {
+            isFinished = true
+            func.apply(this, [...args])
+            setTimeout(() => {
+                isFinished = false
+            }, delay)
+        }
+    }
+}

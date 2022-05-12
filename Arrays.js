@@ -6,8 +6,9 @@
  * 
  * @returns Removed Items Array
  */
-Array.prototype.pSplice = function (index = 0, removeCount = 0, ...items) {
+Array.prototype.pSplice = function (index = 0, removeCount, ...items) {
     let position = index;
+    let deleteCount = 0;
     let removedItems = []
     let beforeItems = []
     let afterItems = []
@@ -21,8 +22,9 @@ Array.prototype.pSplice = function (index = 0, removeCount = 0, ...items) {
         let start = self.length + index
         position = start > 0 ? start : 0
     }
+    deleteCount = removeCount ?? self.length - position
     //Set remove end index to determine how many items will be removed after ${beforeItems} to calculate that we need to add starting position + remove count
-    let removeEndIndex = position + removeCount
+    let removeEndIndex = position + deleteCount
     //Loop over array items to fill data in before and after items
     for (let i = 0; i < self.length; i++) {
         //if i is lesser then position it meanse item will fall under beforeItems
@@ -38,7 +40,10 @@ Array.prototype.pSplice = function (index = 0, removeCount = 0, ...items) {
             afterItems.push(self[i])
         }
     }
+
     const result = [...beforeItems, ...items, ...afterItems]
+    self.length = result.length
+    console.log(result);
     //Create Elements after combining all items to same refrenced array
     for (let i = 0; i < result.length; i++) {
         self[i] = result[i]
@@ -306,3 +311,6 @@ Array.prototype.hasSumPair = function (sum = 0) {
 }
 
 
+const arr = [1, 2, 3, 4, 5]
+console.log(arr.pSplice(1, 1, 10));
+console.log(arr);

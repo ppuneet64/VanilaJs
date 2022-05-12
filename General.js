@@ -170,7 +170,7 @@ const debounce = (func, delay = 1000) => {
     searchInput.addEventListener("keyup", searchInputFunc)
  * @returns Function with Delay
  */
-export const throwttle = (func, delay = 1000) => {
+const throwttle = (func, delay = 1000) => {
     let isFinished = false
     return function (...args) {
         if (!isFinished) {
@@ -182,3 +182,10 @@ export const throwttle = (func, delay = 1000) => {
         }
     }
 }
+/**
+ * get factorial
+ * @param {number} num 
+ * @returns factorial number
+ */
+const factorial = (num) => num <= 1 ? 1 : num * factorial(num - 1)
+console.log(factorial(5));

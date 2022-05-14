@@ -261,19 +261,16 @@ Array.prototype.sorted = function (order = 'ASC') {
     const array = [...this]
     for (let i = 0; i < array.length; i++) {
         for (let j = i; j < array.length; j++) {
-            if (array[i] >= 0 && array[j] >= 0) {
-                if (order === "ASC" && array[i] > array[j]) {
-                    let temp = array[i]
-                    array[i] = array[j]
-                    array[j] = temp
-                }
-                if (order === "DESC" && array[i] < array[j]) {
-                    let temp = array[i]
-                    array[i] = array[j]
-                    array[j] = temp
-                }
+            if (order === "ASC" && array[i] > array[j]) {
+                let temp = array[i]
+                array[i] = array[j]
+                array[j] = temp
             }
-
+            if (order === "DESC" && array[i] < array[j]) {
+                let temp = array[i]
+                array[i] = array[j]
+                array[j] = temp
+            }
         }
     }
     return array

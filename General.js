@@ -130,7 +130,7 @@ const partialFunc = (func, ...args) => {
  */
 const compose = (...fns) => {
     return (parameter = '') => {
-        return fns.reduce((prevVal, func) => func(prevVal), parameter = '')
+        return fns.reduce((prevVal, func) => func(prevVal), parameter)
     }
 }
 
@@ -188,4 +188,34 @@ const throwttle = (func, delay = 1000) => {
  * @returns factorial number
  */
 const factorial = (num) => num <= 1 ? 1 : num * factorial(num - 1)
-console.log(factorial(5));
+
+/**
+ * Create Memoized function from Given Func
+ * @param {function} func Actual function that need to be memoize
+ * @returns Memoized Function
+ */
+const memoize = (func) => {
+    const store = {}
+    return function (...args) {
+        let params = JSON.stringify(args)
+        if (store[params]) {
+            console.log("Res ");
+            return store[params]
+        } else {
+            const res = func.apply(this, args)
+            store[params] = res
+            return res
+        }
+    }
+}
+
+/**
+ * Check if given value is palindrome or not(eg. madam)
+ * @param {any} value Given String or Number
+ * @returns true || false
+ */
+const isPalindrome = (value) => {
+    const rValue = value.split('').reverse()
+    return value === rValue
+}
+

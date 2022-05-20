@@ -218,4 +218,12 @@ const isPalindrome = (value) => {
     const rValue = value.split('').reverse()
     return value === rValue
 }
+/**
+ * Get FIbbonaki Number for given range
+ * @param {number} n input number
+ * @returns result
+ */
+function fibonacci(n) {
+    return (n <= 1) ? n : fibonacci(n - 1) + fibonacci(n - 2);
+}
 

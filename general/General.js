@@ -226,4 +226,10 @@ const isPalindrome = (value) => {
 function fibonacci(n) {
     return (n <= 1) ? n : fibonacci(n - 1) + fibonacci(n - 2);
 }
+/**
+ * Add Numbers till given number(Very Fast Solution)
+ * @param {number} n 
+ * @returns sum
+ */
+const addUpToNumbers = (n) => n * (n + 1) / 2
 

@@ -19,10 +19,8 @@ The left-to-right diagonal = 1+5+9=15. The right to left diagonal 3+5+9 = 17. Th
  */
 
 function diagonalDifference(arr) {
-    let diff = 0
     let first = 0
     let second = 0
-
     for (let i = 0; i < arr.length; i++) {
         first += arr[i][i]
         second += arr[i][arr[i].length - (i + 1)]

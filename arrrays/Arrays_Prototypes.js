@@ -276,6 +276,8 @@ Array.prototype.sorted = function (order = 'ASC') {
     return array
 }
 
+
+
 /**
  * Check if Array has sum pair of given elemets
  * @param {number} sum Sum
@@ -306,3 +308,6 @@ Array.prototype.hasSumPair = function (sum = 0) {
     return false;
 
 }
+
+const arr = [15, 10, 8, 5, 3, 2].sorted()
+arr.sorted()

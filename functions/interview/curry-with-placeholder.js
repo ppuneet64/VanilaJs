@@ -1,3 +1,5 @@
+New Way : https://github.com/cheatsheet1999/FrontEndCollection/blob/main/JS-Core/implement%20curry()%20with%20placeholder%20support.md
+
 const  join = (a, b, c) => {
    return `${a}_${b}_${c}`
 }

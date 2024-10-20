@@ -40,3 +40,39 @@ Function.prototype.pBindEs6 = function (thisArg, ...args) {
         return this.apply(thisArg, [...args, ...partialArgs])
     }
 }
+
+
+Function.prototype.myApply = function (obj = {}, args = []) {
+  let fn = this; // refers to funtion that bind is used on
+  if (typeof fn !== 'function') {
+    throw new Error('Invalid function provided for binding.');
+  }
+
+  obj.randomFunc = this; // creating a method
+
+  let result = obj.randomFunc(...args);
+  delete obj.randomFunc;
+  return result;
+};
+
+Function.prototype.mycall = function (obj = {}, ...args) {
+  let fn = this; // refers to funtion that bind is used on
+  if (typeof fn !== 'function') {
+    throw new Error('Invalid function provided for binding.');
+  }
+
+  obj.randomFunc = this; // creating a method
+
+  let result = obj.randomFunc(...args);
+  delete obj.randomFunc;
+  return result;
+};
+const obj = {
+  testProp: 'Puneet',
+};
+
+const getName = function (a, b) {
+  console.log(this);
+  console.log(a, b, this.testProp);
+};
+getName.myApply(obj, ['hello', 'dada']);

@@ -64,3 +64,48 @@ String.prototype.dashedToCamel = function (symobl = '') {
     }
     return result
 }
+
+
+const movePointer = (index, newStr, char) => {
+    var i = index
+    for (i = index; i < newStr.length; index++) {
+        if (newStr[i] === char) {
+            i++
+            continue
+        }
+        if (newStr[i] !== char) {
+            break
+        }
+    }
+    return i
+}
+const dashedToCamel = (str='',symobl = '') => {
+    let result = ''
+    const newStr = [...str]
+    for (let i = 0; i < newStr.length; i++) {
+        if (newStr[i] === symobl) {
+            i = movePointer(i, newStr, symobl)
+            result += `${newStr[i].toUpperCase()}`
+            continue
+        }
+        result += newStr[i]
+    }
+    return result
+
+}
+
+const upperCaseToDash = function (str, symobl = '') {
+    let result = ''
+    for (let i = 0; i < str.length; i++) {
+        let bigChar = `${str[i]}`
+        if (str[i] !== bigChar.toLowerCase()) {
+            result += `${symobl}${str[i].toLowerCase()}`
+            //i++
+            continue
+        }
+        result += str[i]
+    }
+    return result
+}
+
+console.log(upperCaseToDash('helloWorldHello', '_'))

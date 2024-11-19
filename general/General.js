@@ -233,3 +233,21 @@ function fibonacci(n) {
  */
 const addUpToNumbers = (n) => n * (n + 1) / 2
 
+function msToTime(millis){
+    //# There are 1000 milliseconds in 1 second
+    //# We use % 60 to get the portion of seconds that don't make a whole minute
+    //# It is % 60 because there are 60 seconds in 1 minute
+    let seconds = (millis / 1000) % 60
+    //# There are 60 seconds in 1 minute
+    //# We use % 60 to get the portion of minutes that don't make a whole hour
+    //# It is % 60 because there are 60 minutes in 1 hour
+    let minutes = (millis / (1000 * 60)) % 60
+    //# There are 60 minutes (or 3600 seconds) in 1 hour
+    //# We do not do any modulo operation here because we interested in all hours
+    //# We do not calculate the number of whole days
+    let hours = (millis / (1000 * 60 * 60))
+    console.log(`Hours:${hours} Minuts: ${minutes} Seconds: ${Math.ceil(seconds)}`)
+}
+
+msToTime(70400)
+

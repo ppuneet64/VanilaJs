@@ -133,6 +133,14 @@ const compose = (...fns) => {
         return fns.reduce((prevVal, func) => func(prevVal), parameter)
     }
 }
+//Right to left EExecution
+const compose = (...fns) => {
+    return fns.reduce((f, g) => (...args) => f(g(...args)))
+}
+//let to right
+const pipe = (...fns) => {
+    return fns.reduce((f, g) => (...args) => g(f(...args)))
+}
 
 /**
  * Get Debounced Function
@@ -206,6 +214,25 @@ const memoize = (func) => {
             store[params] = res
             return res
         }
+    }
+}
+
+function memoizeWithInvalidate(fn, invalidate = 0) {
+    const store = {}
+    return function(...args){
+        let identifier = JSON.stringify(args)
+        if (store[identifier]) {
+            return store[identifier]
+        }
+        let result = fn.apply(this, args)
+        store[identifier] = result
+
+        if (invalidate && store[identifier]) {
+            setTimeout(() => {
+                store[identifier] = null
+            }, invalidate)
+        }
+        return result
     }
 }
 

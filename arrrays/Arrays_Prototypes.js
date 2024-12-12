@@ -133,30 +133,28 @@ Array.prototype.unique = function () {
  * 
  * @returns Duplicate Array Elements
  */
-Array.prototype.flattern = function () {
-    let res = []
-    //Using For Loop
-    // for (let i = 0; i < this.length; i++) {
-    //     if (Array.isArray(this[i])) {
-    //         res = [...res, ...this[i].flattern()]
-    //     } else {
-    //         res = [...res, this[i]]
-    //     }
-    // }
+Array.prototype.flattern = function (res = []) {
+  //Using Foreach but bad for time and space complexity
+  // this.forEach(el => {
+  //     if (Array.isArray(el)) {
+  //         res = [...res, ...el.flattern()]
+  //     } else {
+  //         res = [...res, el]
+  //     }
+  // })
 
-    //Using Foreach
-    // this.forEach(el => {
-    //     if (Array.isArray(el)) {
-    //         res = [...res, ...el.flattern()]
-    //     } else {
-    //         res = [...res, el]
-    //     }
-    // })
+  //Using Foreach but good for time and space complexity
+  this.forEach((el) => {
+    if (Array.isArray(el)) {
+      el.flattern(res);
+    } else {
+      res.push(el);
+    }
+  });
+  return res;
+};
 
-    //Using Reduce Method
-    res = this.reduce((acc, current) => acc.concat(Array.isArray(current) ? current.flattern(current) : current), [])
-    return res
-}
+console.log("flatArr", [1, [2, 3, [4, 5], 6], [7, 8]].flattern());
 
 /**
  * Find Minimum Number in Array
